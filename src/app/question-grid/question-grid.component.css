@@ -1,0 +1,30 @@
+.answered {
+    border: 1px solid black;
+}
+
+.correct {
+    border: 1px solid green;
+}
+
+.wrong {
+    border: 1px solid red;
+}
+
+.container {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.item {
+    padding: 1em;
+    margin: 1em;
+}
+
+#questionArea p span {
+    padding: 0.5em;
+}

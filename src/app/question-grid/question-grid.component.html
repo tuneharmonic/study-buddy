@@ -1,0 +1,43 @@
+<p>Total Answered: {{ getTotalAnswered() }}</p>
+<div class="container" *ngIf="state == 0">
+  <span class="item" id="prevQuestArrow">
+    <h1 title="Previous Question" (click)="previousQuestion()">&lt;</h1>
+  </span>
+  <span class="item" id="questionArea">
+      <p>{{ printQuestionNumber() }}</p>
+      <h2>{{ currentQuestion.question }}</h2>
+      <p *ngFor="let answer of currentQuestion.answers">
+        <span (click)="answerQuestion(answer.id)" [class.answered]="currentQuestion.selectedAnswerId == answer.id">
+          {{ answer.answer }}
+        </span>
+      </p>
+  </span>
+  <span class="item" id="nextQuestArrow">
+    <h1 title="Next Question" (click)="nextQuestion()">&gt;</h1>
+  </span>
+</div>
+<div class="container" *ngIf="state == 1">
+  {{ printScore() }}
+  <br />
+  <button type="button" (click)="reset()">Try Again!</button><br />
+  <button type="button" (click)="reviewAnswers()">See Answers</button>
+</div>
+<div *ngIf="state == 2">
+  <span class="item" id="prevQuestArrow">
+    <h1 title="Previous Question" (click)="previousQuestion()">&lt;</h1>
+  </span>
+  <span class="item" id="questionArea">
+      <p>{{ printQuestionNumber() }}: {{ currentQuestion.checkCorrect() ? "Correct" : "Incorrect" }}</p>
+      <h2>{{ currentQuestion.question }}</h2>
+      <p *ngFor="let answer of currentQuestion.answers">
+        <span [class.wrong]="currentQuestion.selectedAnswerId == answer.id && !currentQuestion.checkCorrect()" 
+          [class.correct]="currentQuestion.checkCorrect(answer.id)">
+          {{ answer.answer }}
+        </span>
+      </p>
+  </span>
+  <span class="item" id="nextQuestArrow">
+    <h1 title="Next Question" (click)="nextQuestion()">&gt;</h1>
+  </span>
+  <div><button type="button" (click)="reset()">Try Again!</button></div>
+</div>
